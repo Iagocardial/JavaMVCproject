@@ -9,46 +9,34 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import view.View;
 
 public class Produtos {
-private List<Item> produtos = new ArrayList<>();
-
-	Scanner leitor = new Scanner(System.in);
-	String nome;
-	int quant;
-
-	public void adicionarProduto() {
-		System.out.println("\nNome do produto: ");
-		nome = leitor.next();
-		System.out.println("\nQuantidade: ");
-		quant = leitor.nextInt();
-		produtos.add(new Item(nome, quant));
+	private List<Item> produtos = new ArrayList<>();
+	
+	View v1 = new View();
+	
+	public void adicionarProduto(String cadastro_nome, int cadastro_quant) {
+		produtos.add(new Item(cadastro_nome, cadastro_quant));
 	}
 
-	public void removerProduto() {
-		System.out.println("\nInforme o produto que deseja remover: ");
-		String rem = leitor.next();
+	public void removerProduto(String rem) {
 		for (Iterator<Item> i = produtos.iterator(); i.hasNext();) {
 			Item p = i.next();
 		  if (p.getNome().equals(rem)) {
 		    i.remove();
-		    System.out.println("\nProduto removido!\n");
 		  }
 		}
 	}
 
-	public void editarProduto() {
-		System.out.println("\nInforme o produto que deseja editar: ");
-		String ed = leitor.next();
+	public void editarProduto(String ed) {
 		for (Item p : produtos) {
 			if (p.getNome().toLowerCase().compareTo(ed.toLowerCase()) == 0) {
-				System.out.println("\nProduto encontrado!");
-				System.out.println("\nNovo nome: ");
-				p.setNome(leitor.next());
-				System.out.println("\nNova quantidade: ");
-				p.setQuantidade(leitor.nextInt());
+				v1.info_encontrado();
+				p.setNome(v1.edita_nome());
+				p.setQuantidade(v1.edita_quant());
 			}else {
-				System.out.println("Produto não encontrado!");
+				v1.info_nencontrado();
 			}
 		}
 	}
@@ -60,9 +48,9 @@ private List<Item> produtos = new ArrayList<>();
 	}*/
 	
 	
-//	String caminho = "C:\\Users\\mayra\\Desktop\\relatorio.txt";
+	String caminho = "C:\\Users\\Tagep\\Desktop\\relatorio.txt";
 	
-	String caminho = "/home/iagocardial/Documentos/Fatec/4 Semestre/engenharia 3/relatorio.txt";
+	//String caminho = "/home/iagocardial/Documentos/Fatec/4 Semestre/engenharia 3/relatorio.txt";
 	
 	public void emitirRelatorio() throws Exception {
 		File arquivo = new File(caminho);
@@ -92,6 +80,8 @@ private List<Item> produtos = new ArrayList<>();
 		entrada.close();
 		System.out.println("Dados Lidos com Sucesso!");
 }
+
+	
 	
 	/*@Override
 	public int compareTo(Produto arg0) {

@@ -9,6 +9,9 @@ public class Item {
 		this.quantidade = quantidade;
 	}
 
+	public Item() {
+	}
+
 	public String getNome() {
 		return nome;
 	}
